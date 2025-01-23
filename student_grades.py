@@ -1,16 +1,22 @@
+# Create a list to store student information
 students = []
 
+# Function to add or update a student's grade for a subject
 def add_or_update_student(name, subject, grade):
+    # Check if the student already exists
     for student in students:
         if student['name'] == name:
+            # If the student exists, update the grade for the subject
             student['grades'][subject] = grade
             print(f"Updated {name}'s grade for {subject} to {grade}.")
             return
-    
+            
+    # If the student does not exist, add a new student with the subject and grade
     new_student = {'name': name, 'grades': {subject: grade}}
     students.append(new_student)
     print(f"Added new student {name} with grade {grade} for {subject}.")
 
+# Function to print the report of all students and their grades
 def print_report():
     if not students:
         print("No students to report.")
@@ -24,6 +30,7 @@ def print_report():
             print(f"  Subject: {subject}, Grade: {grade}")
     print("---------------")
 
+# Main program
 def main():
     while True:
         print("\nMenu:")
