@@ -30,6 +30,11 @@ def print_report():
             print(f"  Subject: {subject}, Grade: {grade}")
     print("---------------")
 
+# Function to validate the grade input
+def validate_grade(grade):
+    valid_grades = {'A', 'B', 'C', 'D', 'E', 'F'}
+    return grade in valid_grades
+
 # Main program
 def main():
     while True:
@@ -40,9 +45,18 @@ def main():
         choice = input("Enter your choice (1/2/3): ")
         
         if choice == '1':
-            name = input("Enter student's name: ")
-            subject = input("Enter subject: ")
-            grade = input("Enter grade: ")
+            name = input("Enter student's name: ").strip()
+            if not name:
+                print("Invalid input. Name cannot be empty.")
+                continue
+            subject = input("Enter subject: ").strip()
+            if not subject:
+                print("Invalid input. Subject cannot be empty.")
+                continue
+            grade = input("Enter grade (A, B, C, D, E, F): ").strip().upper()
+            if not validate_grade(grade):
+                print("Invalid input. Grade must be one of A, B, C, D, E, F.")
+                continue
             add_or_update_student(name, subject, grade)
         elif choice == '2':
             print_report()
